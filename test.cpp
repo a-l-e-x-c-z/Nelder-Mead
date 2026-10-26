@@ -4,7 +4,7 @@
 #include "nelder-mead.h"
 
 // rosenbrock banana function
-double banana(std::vector<double>& input)
+double banana(const std::vector<double>& input)
 {
   // x = input[0]
   // y = input[1]

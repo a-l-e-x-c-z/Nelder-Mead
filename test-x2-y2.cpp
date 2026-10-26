@@ -4,7 +4,7 @@
 #include "nelder-mead.h"
 
 // f(x,y) = (x-6.6)^2 + (y-18)^2
-double paraboloid(std::vector<double>& input)
+double paraboloid(const std::vector<double>& input)
 {
   double x = input[0];
   double y = input[1];

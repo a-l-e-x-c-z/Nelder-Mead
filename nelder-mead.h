@@ -6,14 +6,11 @@
 #include <cmath>
 
 
-template<typename T>
-concept Numeric = std::is_arithmetic_v<T>;
-
-template<Numeric T>
-using MinFunc = std::function<T(std::vector<T>&)>;
+template<std::floating_point T>
+using MinFunc = std::function<T(const std::vector<T>&)>;
 
 // Nelder-Mead class
-template<Numeric T>
+template<std::floating_point T>
 class NelderMead
 {
      public:	
@@ -42,7 +39,7 @@ class NelderMead
 
 
 // change simplex edge size
-template<Numeric T>
+template<std::floating_point T>
 void NelderMead<T>::setVertexLen(T vertex_length) 
 {
   this->vertex_length=vertex_length;
@@ -50,7 +47,7 @@ void NelderMead<T>::setVertexLen(T vertex_length)
 
 
 // set calculation error
-template<Numeric T>
+template<std::floating_point T>
 void NelderMead<T>::setError(double error) 
 {
   this->error=error;
@@ -59,7 +56,7 @@ void NelderMead<T>::setError(double error)
 
 
 // create N+1 simplex points, for 2d create triangle, for 3d create tetraeder
-template<Numeric T>
+template<std::floating_point T>
 void NelderMead<T>::fillSimplex()
 {
    for (size_t i=0;i<initial.size();i++)
@@ -79,7 +76,7 @@ void NelderMead<T>::fillSimplex()
 
 
 // print simplex vertices
-template<Numeric T>
+template<std::floating_point T>
 void NelderMead<T>::printSimplex()
 {
    for (auto& vertex: simplex)
@@ -94,7 +91,7 @@ void NelderMead<T>::printSimplex()
 
 
 // search the minimum of the function so the simplex size error is under the limit
-template<Numeric T>
+template<std::floating_point T>
 void NelderMead<T>::minimize(std::vector<T>& minimum)
 {
   fillSimplex();
@@ -136,7 +133,7 @@ void NelderMead<T>::minimize(std::vector<T>& minimum)
 
 
 // one step of the minimization
-template<Numeric T>
+template<std::floating_point T>
 double NelderMead<T>::minimizeStep()
 {
   // largest value vertex
